@@ -1,18 +1,20 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { img500 } from '@/lib/tmdb';
+import { Movie } from "@/lib/types";
 
-type Movie = {
-  id: number;
-  title?: string;
-  name?: string; // (TV sometimes uses name)
-  poster_path: string | null;
-  release_date?: string;
-  vote_average?: number;
-};
+// type Movie = {
+//   id: number;
+//   title?: string;
+//   name?: string; // (TV sometimes uses name)
+//   poster_path: string | null;
+//   release_date?: string;
+//   vote_average?: number;
+// };
 
 export default function MovieCard({ movie }: { movie: Movie }) {
   const title = movie.title || movie.name || 'Untitled';
+  
   return (
     <Link
       href={`/movie/${movie.id}`}

@@ -1,24 +1,22 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { img500 } from '@/lib/tmdb';
+import type { Movie } from '@/lib/types';
 
-type Props = {
-  movie: {
-    id: number;
-    title: string;
-    overview: string;
-    backdrop_path: string | null;
-  };
-};
+type Props = { movie: Movie };
 
 export default function Hero({ movie }: Props) {
+  // fallbacks so props stay definite strings
+  const title = movie.title ?? movie.name ?? 'Untitled';
+  const overview = movie.overview ?? 'No overview available.';
+
   return (
     <section className="relative">
       {/* Background */}
       <div className="absolute inset-0">
         <Image
           src={img500(movie.backdrop_path) || '/placeholder-wide.jpg'}
-          alt={movie.title}
+          alt={title}
           fill
           priority
           className="object-cover"
@@ -32,10 +30,10 @@ export default function Hero({ movie }: Props) {
       <div className="relative z-10 mx-auto max-w-7xl px-4 py-14 md:px-8 md:py-20">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-extrabold tracking-tight text-white md:text-6xl">
-            {movie.title}
+            {title}
           </h1>
           <p className="mt-4 text-base leading-relaxed text-gray-200/90 md:text-lg">
-            {movie.overview}
+            {overview}
           </p>
 
           {/* Buttons */}

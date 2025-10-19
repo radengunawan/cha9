@@ -1,11 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { getById, getVideos, img500 } from '@/lib/tmdb';
+import { Movie, VideosResponse, Video } from '@/lib/types';
 
 type Props = { params: { id: string } };
 
 export async function generateMetadata({ params }: Props) {
-  const movie = await getById(params.id);
+  const movie: Movie = await getById(params.id);
   return {
     title: `${movie.title} (${movie.release_date?.slice(0, 4)}) | Movie`,
   };
@@ -14,10 +15,9 @@ export async function generateMetadata({ params }: Props) {
 export default async function MovieDetail({ params }: Props) {
   const movie = await getById(params.id);
 
-  // 👇 Add your code here — inside the same async component
-  const vids = await getVideos(movie.id);
-  const trailer = vids.results?.find(
-    (v: any) => v.type === 'Trailer' && v.site === 'YouTube'
+  const vids: VideosResponse = await getVideos(movie.id);
+  const trailer: Video | undefined = vids.results?.find(
+    (v) => v.type === 'Trailer' && v.site === 'YouTube'
   );
   const trailerUrl = trailer
     ? `https://www.youtube.com/watch?v=${trailer.key}`
@@ -33,7 +33,7 @@ export default async function MovieDetail({ params }: Props) {
         <div className="relative w-full aspect-[2/3] rounded-lg overflow-hidden bg-gray-100">
           <Image
             src={img500(movie.poster_path)}
-            alt={movie.title}
+            alt={movie.title ?? 'Movie poster'}
             fill
             className="object-cover"
           />

@@ -2,11 +2,12 @@
 
 import { useEffect, useState } from 'react';
 import MovieCard from './MovieCard';
+import { Movie, Paginated } from '@/lib/types';
 
 export default function SearchBox() {
-  const [q, setQ] = useState('');
-  const [results, setResults] = useState<any[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [q, setQ] = useState<string>('');
+  const [results, setResults] = useState<Movie[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     if (!q.trim()) {
@@ -16,10 +17,10 @@ export default function SearchBox() {
     const id = setTimeout(async () => {
       setLoading(true);
       const res = await fetch(`/api/search?q=${encodeURIComponent(q)}`);
-      const data = await res.json();
+      const data: Paginated<Movie> = await res.json();
       setResults(data.results || []);
       setLoading(false);
-    }, 350); // debounce
+    }, 350);
     return () => clearTimeout(id);
   }, [q]);
 

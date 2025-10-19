@@ -5,11 +5,12 @@ import MovieCard from '@/components/MovieCard';
 import { getFeatured, getPopular } from '@/lib/tmdb';
 import NewReleaseSection from '@/components/NewReleaseSection';
 import Footer from '@/components/Footer';
+import { Paginated, Movie } from '@/lib/types';
 
 export default async function HomePage() {
   const featured = await getFeatured(); // hero movie
-  const popular = await getPopular(); // grid below
-  const movies = popular.results ?? [];
+  const popular: Paginated<Movie> = await getPopular();
+  const movies: Movie[] = popular.results ?? [];
 
   return (
     <div className="min-h-screen bg-black text-white">

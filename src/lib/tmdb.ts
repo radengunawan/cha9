@@ -1,4 +1,5 @@
 const BASE = 'https://api.themoviedb.org/3';
+import { Movie, Paginated, VideosResponse } from './types';
 
 function authHeaders() {
   const token = process.env.TMDB_ACCESS_TOKEN!;
@@ -23,9 +24,9 @@ export async function tmdb(path: string, { revalidate = 60 * 60 } = {}) {
 }
 
 // Common endpoints:
-export const getPopular = () =>
+export const getPopular = async (): Promise<Paginated<Movie>> =>
   tmdb('/movie/popular?language=en-US&page=1', { revalidate: 60 * 30 });
-export const getById = (id: string) =>
+export const getById = (id: string | number): Promise<Movie> =>
   tmdb(`/movie/${id}?language=en-US`, { revalidate: 60 * 60 * 24 });
 export const searchMoviesServer = (q: string, page = 1) =>
   tmdb(
@@ -37,11 +38,12 @@ export const searchMoviesServer = (q: string, page = 1) =>
     }
   );
 
-export const getFeatured = async () => {
-  const data = await tmdb('/movie/now_playing?language=en-US&page=1', {
-    revalidate: 60 * 10,
-  });
-  return data.results?.[0];
+export const getFeatured = async (): Promise<Movie> => {
+  const data: Paginated<Movie> = await tmdb(
+    '/movie/now_playing?language=en-US&page=1',
+    { revalidate: 600 }
+  );
+  return data.results[0];
 };
 
 // Image helpers:
@@ -49,9 +51,8 @@ export const img500 = (path?: string | null) =>
   path ? `https://image.tmdb.org/t/p/w500${path}` : '/placeholder.png';
 
 // lib/tmdb.ts
-export const getVideos = (id: number) =>
-  tmdb(`/movie/${id}/videos?language=en-US`, { revalidate: 60 * 60 });
-export const getNewReleases = (page = 1) =>
-  tmdb(`/movie/now_playing?language=en-US&page=${page}`, {
-    revalidate: 60 * 5,
-  });
+export const getNewReleases = (page = 1): Promise<Paginated<Movie>> =>
+  tmdb(`/movie/now_playing?language=en-US&page=${page}`, { revalidate: 300 });
+
+export const getVideos = (id: number | string): Promise<VideosResponse> =>
+  tmdb(`/movie/${id}/videos?language=en-US`, { revalidate: 3600 });

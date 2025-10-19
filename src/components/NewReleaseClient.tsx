@@ -1,5 +1,7 @@
 // src/components/NewReleaseClient.tsx
 'use client';
+// import { useState } from 'react';
+import { Movie, Paginated } from '@/lib/types';
 
 import { useState } from 'react';
 import NewReleaseCard from './NewReleaseCard';
@@ -8,12 +10,12 @@ export default function NewReleaseClient({
   initial,
   totalPages,
 }: {
-  initial: any[];
+  initial: Movie[];
   totalPages: number;
 }) {
-  const [items, setItems] = useState<any[]>(initial);
-  const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false);
+  const [items, setItems] = useState<Movie[]>(initial);
+  const [page, setPage] = useState<number>(1);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const loadMore = async () => {
     if (loading || page >= totalPages) return;
@@ -22,7 +24,7 @@ export default function NewReleaseClient({
     const res = await fetch(`/api/new-release?page=${next}`, {
       cache: 'no-store',
     });
-    const data = await res.json();
+    const data: Paginated<Movie> = await res.json();
     setItems((prev) => [...prev, ...(data.results ?? [])]);
     setPage(next);
     setLoading(false);

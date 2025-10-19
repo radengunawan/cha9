@@ -2,8 +2,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { img500 } from '@/lib/tmdb';
+import { Movie } from '@/lib/types';
 
-export default function NewReleaseCard({ m }: { m: any }) {
+export default function NewReleaseCard({ m }: { m: Movie }) {
   const title = m.title ?? m.name ?? 'Untitled';
   const rating =
     typeof m.vote_average === 'number' ? m.vote_average.toFixed(1) : '—';
