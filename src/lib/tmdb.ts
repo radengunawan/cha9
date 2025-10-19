@@ -47,3 +47,7 @@ export const getFeatured = async () => {
 // Image helpers:
 export const img500 = (path?: string | null) =>
   path ? `https://image.tmdb.org/t/p/w500${path}` : '/placeholder.png';
+
+// lib/tmdb.ts
+export const getVideos = (id: number) =>
+  tmdb(`/movie/${id}/videos?language=en-US`, { revalidate: 60 * 60 });

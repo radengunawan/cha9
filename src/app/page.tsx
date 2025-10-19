@@ -1,35 +1,30 @@
+// src/app/page.tsx
+import Navbar from '@/components/Navbar';
+import Hero from '@/components/Hero';
 import MovieCard from '@/components/MovieCard';
-import { getPopular } from '@/lib/tmdb';
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import SearchBox from '@/components/SearchBox';
-
-export const metadata = {
-  title: 'Movies | Popular',
-  description: 'Popular movies via TMDB',
-};
+import { getFeatured, getPopular } from '@/lib/tmdb';
 
 export default async function HomePage() {
-  const data = await getPopular();
-  const movies = data.results ?? [];
+  const featured = await getFeatured(); // hero movie
+  const popular = await getPopular(); // grid below
+  const movies = popular.results ?? [];
 
   return (
-    <main className="mx-auto max-w-7xl px-4 py-8">
-      <header className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <h1 className="text-3xl font-bold">Popular Moviez</h1>
-          <p className="text-gray-600">
-            Powered by TMDB • not endorsed by TMDB
-          </p>
-        </div>
-        <SearchBox />
-      </header>
+    <div className="min-h-screen bg-black text-white">
+      <Navbar />
+      <Hero movie={featured} />
 
-      <section className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
-        {movies.map((m: any) => (
-          <MovieCard key={m.id} movie={m} />
-        ))}
+      {/* “Trending Now” section header */}
+      <section className="mx-auto max-w-7xl px-4 md:px-8">
+        <h2 className="mt-6 text-2xl font-bold">Trending Now</h2>
+
+        {/* horizontal carousel look (simple scroll for now) */}
+        <div className="mt-4 grid grid-flow-col auto-cols-[56%] gap-4 overflow-x-auto sm:auto-cols-[32%] md:auto-cols-[22%] lg:auto-cols-[18%] pb-4">
+          {movies.slice(0, 12).map((m: any) => (
+            <MovieCard key={m.id} movie={m} />
+          ))}
+        </div>
       </section>
-    </main>
+    </div>
   );
 }

@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { getById, img500 } from '@/lib/tmdb';
+import { getById, getVideos, img500 } from '@/lib/tmdb';
 
 type Props = { params: { id: string } };
 
@@ -13,6 +13,15 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function MovieDetail({ params }: Props) {
   const movie = await getById(params.id);
+
+  // 👇 Add your code here — inside the same async component
+  const vids = await getVideos(movie.id);
+  const trailer = vids.results?.find(
+    (v: any) => v.type === 'Trailer' && v.site === 'YouTube'
+  );
+  const trailerUrl = trailer
+    ? `https://www.youtube.com/watch?v=${trailer.key}`
+    : null;
 
   return (
     <main className="mx-auto max-w-5xl px-4 py-8">
@@ -40,6 +49,20 @@ export default async function MovieDetail({ params }: Props) {
           <p className="text-gray-800">
             {movie.overview || 'No overview available.'}
           </p>
+
+          {/* 👇 Add this block for the trailer button */}
+          {trailerUrl && (
+            <div className="mt-6">
+              <a
+                href={trailerUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-red-600 px-6 py-3 font-semibold text-white shadow hover:bg-red-500"
+              >
+                ▶ Watch Trailer
+              </a>
+            </div>
+          )}
 
           <div className="mt-6 text-sm text-gray-500">
             This product uses the TMDB API but is not endorsed or certified by
