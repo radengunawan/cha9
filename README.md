@@ -1,11 +1,12 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/vmcAZdFI)
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=21152751&assignment_repo_type=AssignmentRepo)
+
 # Challenge 9 - Slicing Figma design into code with Next JS
 
 # Description
 
 In this assignment, you'll translate a provided Figma design into a functional webpage using Next JS and Tailwind CSS, then deploy it using vercel. After you deploy the app, update the readme below.
-Hosted web URL: ....
+Hosted web URL: https://cha9-dmk2habu4-radengunawans-projects.vercel.app/
 
 You'll be provided with a basic project setup, and your task will be to implement the design by writing components that reusable and utilizing Tailwind's classes.
 
