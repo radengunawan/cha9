@@ -6,7 +6,7 @@
 # Description
 
 In this assignment, you'll translate a provided Figma design into a functional webpage using Next JS and Tailwind CSS, then deploy it using vercel. After you deploy the app, update the readme below.
-Hosted web URL: https://cha9-dmk2habu4-radengunawans-projects.vercel.app/
+Hosted web URL: https://cha9-git-main-radengunawans-projects.vercel.app?_vercel_share=LUyL29K9ivAKrLagwOILt5csg9wFYKAq
 
 You'll be provided with a basic project setup, and your task will be to implement the design by writing components that reusable and utilizing Tailwind's classes.
 
