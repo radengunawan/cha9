@@ -3,6 +3,8 @@ import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import MovieCard from '@/components/MovieCard';
 import { getFeatured, getPopular } from '@/lib/tmdb';
+import NewReleaseSection from '@/components/NewReleaseSection';
+import Footer from '@/components/Footer';
 
 export default async function HomePage() {
   const featured = await getFeatured(); // hero movie
@@ -23,6 +25,10 @@ export default async function HomePage() {
           {movies.slice(0, 12).map((m: any) => (
             <MovieCard key={m.id} movie={m} />
           ))}
+        </div>
+        <div className="min-h-screen bg-black text-white">
+          <NewReleaseSection />
+          <Footer />
         </div>
       </section>
     </div>

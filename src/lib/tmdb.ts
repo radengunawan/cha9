@@ -51,3 +51,7 @@ export const img500 = (path?: string | null) =>
 // lib/tmdb.ts
 export const getVideos = (id: number) =>
   tmdb(`/movie/${id}/videos?language=en-US`, { revalidate: 60 * 60 });
+export const getNewReleases = (page = 1) =>
+  tmdb(`/movie/now_playing?language=en-US&page=${page}`, {
+    revalidate: 60 * 5,
+  });
