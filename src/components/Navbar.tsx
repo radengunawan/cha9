@@ -1,4 +1,4 @@
-// src/components/Navbar.tsx
+import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Navbar() {
@@ -9,7 +9,13 @@ export default function Navbar() {
           href="/"
           className="flex items-center gap-2 font-semibold text-white"
         >
-          <div className="h-6 w-6 rounded bg-white" />
+          <Image
+            src="/movie_logo1.png" // path inside /public
+            alt="Movie logo"
+            width={28}
+            height={28}
+            className="rounded"
+          />
           <span>Movie</span>
         </Link>
 

@@ -1,4 +1,3 @@
-// src/components/Hero.tsx
 import Image from 'next/image';
 import Link from 'next/link';
 import { img500 } from '@/lib/tmdb';
@@ -15,7 +14,7 @@ type Props = {
 export default function Hero({ movie }: Props) {
   return (
     <section className="relative">
-      {/* Background poster */}
+      {/* Background */}
       <div className="absolute inset-0">
         <Image
           src={img500(movie.backdrop_path) || '/placeholder-wide.jpg'}
@@ -25,9 +24,7 @@ export default function Hero({ movie }: Props) {
           className="object-cover"
           sizes="100vw"
         />
-        {/* Left-to-right gradient for text readability */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-transparent" />
-        {/* Bottom vignette to blend into black content area */}
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/90 to-transparent" />
       </div>
 
@@ -41,20 +38,25 @@ export default function Hero({ movie }: Props) {
             {movie.overview}
           </p>
 
+          {/* Buttons */}
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <Link
               href={`/movie/${movie.id}?play=trailer`}
-              className="inline-flex items-center gap-2 rounded-full bg-red-600 px-6 py-3 font-semibold text-white shadow hover:bg-red-500"
+              className="inline-flex items-center gap-3 rounded-full px-6 py-3 font-semibold text-white shadow transition"
+              style={{ backgroundColor: '#961200' }}
             >
               <span>Watch Trailer</span>
-              <span className="inline-block h-5 w-5 rounded-full bg-white/20 ring-1 ring-white/30">
-                {/* fake play dot for look; you can swap with an icon */}
-              </span>
+              <Image
+                src="/play_button.png" // located in /public
+                alt="Play icon"
+                width={20}
+                height={20}
+              />
             </Link>
 
             <Link
               href={`/movie/${movie.id}`}
-              className="inline-flex items-center gap-2 rounded-full bg-white/10 px-6 py-3 font-semibold text-white ring-1 ring-white/15 hover:bg-white/15"
+              className="inline-flex items-center gap-2 rounded-full bg-white/10 px-6 py-3 font-semibold text-white ring-1 ring-white/15 hover:bg-white/15 transition"
             >
               See Detail
             </Link>
