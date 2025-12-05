@@ -16,7 +16,7 @@ export default function Footer() {
           <span>Movie</span>
         </Link>
         <p className="text-sm text-gray-400">
-          Copyright ©{new Date().getFullYear()} Movie Explorer
+          Copyright ©{new Date().getFullYear()} by Eka Gunawan
         </p>
       </div>
     </footer>
