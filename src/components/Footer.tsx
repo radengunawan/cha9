@@ -13,7 +13,7 @@ export default function Footer() {
             height={28}
             className="rounded"
           />
-          <span>Movie</span>
+          <span>Eka Movie Tracker</span>
         </Link>
         <p className="text-sm text-gray-400">
           Copyright ©{new Date().getFullYear()} by Eka Gunawan

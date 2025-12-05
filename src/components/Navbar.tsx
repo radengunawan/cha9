@@ -16,15 +16,15 @@ export default function Navbar() {
             height={28}
             className="rounded"
           />
-          <span>Movie</span>
+          <span>Eka Movie Tracker</span>
         </Link>
 
-        <div className="hidden md:flex items-center gap-6 text-sm text-gray-300">
+        {/* <div className="hidden md:flex items-center gap-6 text-sm text-gray-300">
           <Link href="/">Home</Link>
           <Link href="/favorites">Favorites</Link>
-        </div>
+        </div> */}
 
-        <div className="ml-auto w-48 sm:w-72">
+        {/* <div className="ml-auto w-48 sm:w-72">
           <div className="group flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-gray-200 focus-within:ring-2 focus-within:ring-white/20">
             <svg width="16" height="16" className="opacity-60">
               <circle cx="7" cy="7" r="6" stroke="currentColor" fill="none" />
@@ -35,7 +35,7 @@ export default function Navbar() {
               className="w-full bg-transparent placeholder:text-gray-400 focus:outline-none"
             />
           </div>
-        </div>
+        </div> */}
       </div>
     </nav>
   );

@@ -26,7 +26,7 @@ export default async function MovieDetail({ params }: Props) {
   return (
     <main className="mx-auto max-w-5xl px-4 py-8">
       <Link href="/" className="text-blue-600 hover:underline">
-        &larr; Back
+        &larr; BACK
       </Link>
 
       <div className="mt-4 grid gap-6 md:grid-cols-[220px_1fr]">
@@ -52,21 +52,31 @@ export default async function MovieDetail({ params }: Props) {
 
           {/* 👇 Add this block for the trailer button */}
           {trailerUrl && (
-            <div className="mt-6">
+            <div className="mt-6 flex gap-3">
               <a
                 href={trailerUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-red-600 px-6 py-3 font-semibold text-white shadow hover:bg-red-500"
+                style={{ backgroundColor: '#961200' }}
+                className="inline-flex items-center gap-2 rounded-full px-6 py-3 font-semibold text-white shadow"
               >
                 ▶ Watch Trailer
               </a>
+
+              <Link
+                href="/"
+                className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold text-white shadow hover:opacity-90"
+                style={{ backgroundColor: '#0044cc' }}
+              >
+                Back
+              </Link>
             </div>
           )}
 
           <div className="mt-6 text-sm text-gray-500">
-            This product uses the TMDB API but is not endorsed or certified by
-            TMDB.
+            {/* This product uses the TMDB API but is not endorsed or certified by
+            TMDB. */}
+            Real time movie tracker by Eka Gunawan
           </div>
         </div>
       </div>

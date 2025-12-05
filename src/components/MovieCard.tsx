@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { img500 } from '@/lib/tmdb';
-import { Movie } from "@/lib/types";
+import { Movie } from '@/lib/types';
 
 // type Movie = {
 //   id: number;
@@ -14,11 +14,11 @@ import { Movie } from "@/lib/types";
 
 export default function MovieCard({ movie }: { movie: Movie }) {
   const title = movie.title || movie.name || 'Untitled';
-  
+
   return (
     <Link
       href={`/movie/${movie.id}`}
-      className="group rounded-xl overflow-hidden bg-white shadow hover:shadow-lg transition"
+      className="group rounded-xl overflow-hidden bg-transparent shadow hover:shadow-lg transition"
     >
       <div className="relative aspect-[2/3] bg-gray-100">
         <Image

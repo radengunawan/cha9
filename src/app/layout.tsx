@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Eka's Movie Tracker",
   description: 'Real Time Movie Tracker by Eka Gunawan ',
+  icons: {
+    icon: '/vercel.svg',
+  },
 };
 
 export default function RootLayout({

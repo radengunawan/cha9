@@ -27,6 +27,7 @@ export default async function HomePage() {
             <MovieCard key={m.id} movie={m} />
           ))}
         </div>
+        
         <div className="min-h-screen bg-black text-white">
           <NewReleaseSection />
           <Footer />
