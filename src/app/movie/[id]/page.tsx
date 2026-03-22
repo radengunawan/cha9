@@ -3,17 +3,22 @@ import Link from 'next/link';
 import { getById, getVideos, img500 } from '@/lib/tmdb';
 import { Movie, VideosResponse, Video } from '@/lib/types';
 
-type Props = { params: { id: string } };
+// type Props = { params: { id: string } };
+type Props = { params: Promise<{ id: string }> };
 
 export async function generateMetadata({ params }: Props) {
-  const movie: Movie = await getById(params.id);
+  // const movie: Movie = await getById(params.id);
+  const { id } = await params;
+  const movie = await getById(id);
   return {
     title: `${movie.title} (${movie.release_date?.slice(0, 4)}) | Movie`,
   };
 }
 
 export default async function MovieDetail({ params }: Props) {
-  const movie = await getById(params.id);
+  const { id } = await params;
+  const movie = await getById(id);
+  // const movie = await getById(params.id);
 
   const vids: VideosResponse = await getVideos(movie.id);
   const trailer: Video | undefined = vids.results?.find(

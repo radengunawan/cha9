@@ -38,7 +38,7 @@ export default function NewReleaseClient({
         grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6"
       >
         {items.map((m) => (
-          <NewReleaseCard key={`${m.id}-${m.poster_path}`} m={m} />
+          <NewReleaseCard key={m.id} m={m} />
         ))}
       </div>
 
